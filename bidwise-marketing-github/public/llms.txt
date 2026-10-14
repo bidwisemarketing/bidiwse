@@ -1,0 +1,35 @@
+# BidWise Marketing — Agency Entity & Capability Guide
+
+> Full-service performance marketing and digital engineering agency certified as a Google Partner.
+
+## Organization
+- Name: BIDWISE MARKETING
+- Domain: https://bidwise.marketing/
+- Headquarters: OFFICE 301, 254 CHAPMAN RD, SUITE 101-B, NEWARK, DELAWARE 19702, UNITED STATES
+- Contact: info@bidwise.marketing | +1 302 626 7596 | https://wa.me/13026267596
+- Accreditation: Certified Google Partner & GTM Accredited Agency
+
+## Primary Specialisms
+- Google Ads & PPC Performance: Search, Shopping, Performance Max, Display, YouTube, Merchant Center troubleshooting, and negative keyword mining.
+- Paid Social Acquisition: Meta (Facebook & Instagram), TikTok Ads, and LinkedIn B2B advertising.
+- Organic Search & AEO/GEO: Technical SEO, topical authority, entity structuring, and Generative Engine Optimization for ChatGPT and Perplexity.
+- High-Performance Web Engineering: Sub-second, accessible, conversion-engineered websites and landing pages.
+- AI Workflow Automation: CRM integrations, n8n/Make workflows, automated reporting, and lead routing.
+- Telemetry & Attribution: Google Tag Manager (sGTM), Google Analytics 4, Consent Mode v2, and server-side Conversion APIs (CAPI).
+
+## Entry Offer
+- FREE Google Ads Account Audit: Comprehensive manual diagnostic covering wasted search queries, negative keyword gaps, tracking errors, Quality Scores, and Performance Max cannibalization (https://bidwise.marketing/free-google-ads-audit/).
+
+## Canonical URLs
+- Homepage: https://bidwise.marketing/
+- Services Catalog: https://bidwise.marketing/services/
+- Google Ads Management: https://bidwise.marketing/services/google-ads/
+- Paid Advertising Hub: https://bidwise.marketing/services/paid-advertising/
+- Meta Ads: https://bidwise.marketing/services/meta-ads/
+- Technical SEO: https://bidwise.marketing/services/seo/
+- AEO & GEO: https://bidwise.marketing/services/aeo-geo/
+- Web Design: https://bidwise.marketing/services/web-design/
+- AI Automations: https://bidwise.marketing/services/ai-automation/
+- About the Agency: https://bidwise.marketing/about/
+- Contact & Inquiries: https://bidwise.marketing/contact/
+- Free Audit: https://bidwise.marketing/free-google-ads-audit/

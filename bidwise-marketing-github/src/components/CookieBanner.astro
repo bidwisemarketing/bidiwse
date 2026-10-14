@@ -1,0 +1,171 @@
+---
+import { BRAND_CONFIG } from '../config/brand.config';
+---
+
+<div id="consentBanner" class="consent-banner" role="dialog" aria-live="polite" aria-label="Privacy and Cookie Consent">
+  <div class="glass-card consent-card">
+    <div class="consent-header">
+      <span class="consent-icon">🛡️</span>
+      <h4 class="consent-title">Privacy &amp; Cookie Consent</h4>
+    </div>
+    <p class="consent-text">
+      We use strictly necessary cookies to ensure basic site functionality. With your permission, we also use privacy-first telemetry (Google Consent Mode v2) to understand visitor interaction and measure ad efficiency.
+    </p>
+    <div class="consent-actions">
+      <button id="acceptAllConsent" class="btn btn-primary btn-sm">
+        Accept All
+      </button>
+      <button id="rejectOptionalConsent" class="btn btn-glass btn-sm">
+        Essential Only
+      </button>
+      <a href="/cookies/" class="consent-learn-more">
+        Cookie Policy
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    max-width: 440px;
+    z-index: 999;
+    display: none;
+    animation: slideUpConsent 0.4s ease forwards;
+  }
+
+  @keyframes slideUpConsent {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .consent-card {
+    background: rgba(6, 18, 32, 0.9);
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    padding: 24px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 254, 0.15);
+  }
+
+  .consent-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .consent-icon {
+    font-size: 1.2rem;
+  }
+
+  .consent-title {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .consent-text {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .consent-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .consent-learn-more {
+    font-size: 0.8rem;
+    color: var(--cyan-bright);
+    margin-left: auto;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    .consent-banner {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ gtmId: BRAND_CONFIG.tracking.gtmId }}>
+  // Initialize Google Consent Mode v2 default states
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+
+  const storedConsent = localStorage.getItem('bidwise_consent');
+
+  if (!storedConsent) {
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+    
+    // Display banner after short idle
+    setTimeout(() => {
+      const banner = document.getElementById('consentBanner');
+      if (banner) banner.style.display = 'block';
+    }, 1200);
+  } else if (storedConsent === 'all') {
+    gtag('consent', 'default', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+    loadGTM();
+  }
+
+  function loadGTM() {
+    if (window.__gtmLoaded) return;
+    window.__gtmLoaded = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer', gtmId);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('consentBanner');
+    const acceptBtn = document.getElementById('acceptAllConsent');
+    const rejectBtn = document.getElementById('rejectOptionalConsent');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('bidwise_consent', 'all');
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+        loadGTM();
+        if (banner) banner.style.display = 'none';
+      });
+    }
+
+    if (rejectBtn) {
+      rejectBtn.addEventListener('click', () => {
+        localStorage.setItem('bidwise_consent', 'essential');
+        gtag('consent', 'update', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+        if (banner) banner.style.display = 'none';
+      });
+    }
+  });
+</script>

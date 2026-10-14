@@ -1,0 +1,181 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Discovery & Telemetry Audit',
+    desc: 'We audit historic ad accounts, conversion tracking leaks, competitors, and target audience demand profiles.'
+  },
+  {
+    num: '02',
+    title: 'Architecture & Strategy',
+    desc: 'We map out custom channel allocation, single-intent search structures, creative test sprints, and server-side tracking.'
+  },
+  {
+    num: '03',
+    title: 'Build, Track & Launch',
+    desc: 'We deploy tight campaign structures, high-converting copy, product feed optimizations, and server-side CAPI telemetry.'
+  },
+  {
+    num: '04',
+    title: 'Iterative Optimization',
+    desc: 'Weekly negative query pruning, bid cap adjustments, creative angle refreshes, and conversion rate optimizations.'
+  },
+  {
+    num: '05',
+    title: 'Scale & AI Automation',
+    desc: 'We expand budget into winning clusters while automating lead routing, CRM syncing, and executive reporting.'
+  }
+];
+---
+
+<section class="section process-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="glass-pill">
+        <span class="dot"></span>
+        <span>Transparent Methodology</span>
+      </div>
+      <h2 style="margin-top: 14px;">The Growth Engineering Process</h2>
+      <p class="subtitle">
+        A disciplined, five-stage operational framework engineered to remove guesswork and compound return on ad spend.
+      </p>
+    </div>
+
+    <!-- Stepper Roadmap (Matching Reference Image Stepper) -->
+    <div class="process-roadmap">
+      <div class="roadmap-track" aria-hidden="true"></div>
+
+      <div class="process-grid">
+        {steps.map((step) => (
+          <div class="process-node">
+            <div class="node-badge-wrapper">
+              <div class="node-circle">
+                <span class="node-number">{step.num}</span>
+              </div>
+              <div class="node-pulse"></div>
+            </div>
+            <div class="glass-card node-card">
+              <h3 class="node-title">{step.title}</h3>
+              <p class="node-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-roadmap {
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .roadmap-track {
+    position: absolute;
+    top: 28px;
+    left: 5%;
+    right: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      rgba(0, 242, 254, 0.2) 0%, 
+      #00f2fe 50%, 
+      rgba(56, 189, 248, 0.2) 100%
+    );
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    z-index: 0;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .node-badge-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .node-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(8, 24, 40, 0.95);
+    border: 2px solid #00f2fe;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.5), inset 0 0 10px rgba(0, 242, 254, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+
+  .process-node:hover .node-circle {
+    transform: scale(1.12);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.8), inset 0 0 15px rgba(0, 242, 254, 0.5);
+  }
+
+  .node-number {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .node-card {
+    padding: 22px 18px;
+    width: 100%;
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .node-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .node-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .roadmap-track {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

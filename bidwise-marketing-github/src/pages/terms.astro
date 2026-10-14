@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BRAND_CONFIG } from '../config/brand.config';
+---
+
+<Layout
+  title="Terms of Service | BidWise Marketing"
+  description="Terms of service and engagement conditions for BidWise Marketing digital agency services."
+>
+  <div class="legal-page-section section">
+    <div class="container">
+      <div class="glass-card legal-card">
+        <h1 class="legal-title">Terms of Service</h1>
+        <p class="legal-updated">Last Updated: February 2026</p>
+
+        <div class="legal-content">
+          <h2>1. Overview</h2>
+          <p>
+            Welcome to {BRAND_CONFIG.name}. By accessing our website ({BRAND_CONFIG.domain}) or engaging our digital marketing, paid advertising, web design, or automation services, you agree to comply with and be bound by these Terms of Service.
+          </p>
+
+          <h2>2. Services &amp; Proposals</h2>
+          <p>
+            BidWise Marketing provides marketing strategy, paid ad management, conversion tracking implementation, web development, and related services. Specific deliverables, fees, timelines, and milestones are governed by individual client proposals or Service Level Agreements (SLAs).
+          </p>
+
+          <h2>3. Advertising Media Spend &amp; Third-Party Platforms</h2>
+          <p>
+            Unless explicitly agreed in writing, client advertising budgets (Google Ads, Meta Ads, TikTok, LinkedIn) are billed directly by the relevant advertising platforms to the client's payment method. BidWise Marketing acts as an authorized manager on your behalf.
+          </p>
+          <p>
+            We adhere strictly to platform advertising policies (such as Google Ads Policies and Meta Commercial Terms). While we employ industry-leading methodologies, third-party platforms reserve unilateral discretion over ad approvals, algorithm updates, and account status.
+          </p>
+
+          <h2>4. Client Responsibilities</h2>
+          <p>Clients agree to:</p>
+          <ul>
+            <li>Provide timely access to ad accounts, tag managers, and websites necessary for service delivery.</li>
+            <li>Ensure all promotional claims, trademarks, and creative assets comply with applicable consumer laws.</li>
+            <li>Maintain active payment methods on underlying advertising networks.</li>
+          </ul>
+
+          <h2>5. Intellectual Property</h2>
+          <p>
+            Upon full payment of agreed fees, clients retain ownership of custom creative deliverables, ad account configurations, and bespoke code produced during the engagement. BidWise Marketing retains rights to proprietary analytical templates, pre-existing frameworks, and methodologies.
+          </p>
+
+          <h2>6. Limitation of Liability</h2>
+          <p>
+            To the maximum extent permitted by law, BidWise Marketing shall not be liable for indirect, incidental, or consequential damages resulting from platform downtime, policy changes by third-party search engines, or algorithm adjustments.
+          </p>
+
+          <h2>7. Governing Law</h2>
+          <p>
+            These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States. Any disputes arising shall be subject to the exclusive jurisdiction of the state and federal courts located in the State of Delaware.
+          </p>
+
+          <h2>8. Corporate Inquiries</h2>
+          <p>
+            Questions regarding these Terms should be sent to:<br />
+            <strong>{BRAND_CONFIG.legalName}</strong><br />
+            Attention: Corporate &amp; Legal Team<br />
+            {BRAND_CONFIG.contact.address.street}<br />
+            {BRAND_CONFIG.contact.address.city}, {BRAND_CONFIG.contact.address.state} {BRAND_CONFIG.contact.address.postalCode}, {BRAND_CONFIG.contact.address.country}<br />
+            Email: <a href={`mailto:${BRAND_CONFIG.contact.email}`} class="text-cyan">{BRAND_CONFIG.contact.email}</a><br />
+            Telephone / WhatsApp: <a href={`tel:${BRAND_CONFIG.contact.phoneTel}`} class="text-cyan">{BRAND_CONFIG.contact.phoneDisplay}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .legal-page-section {
+    padding-top: calc(var(--nav-height) + 50px);
+  }
+
+  .legal-card {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px;
+    background: rgba(8, 22, 38, 0.8);
+  }
+
+  .legal-title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .legal-updated {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .legal-content h2 {
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin: 32px 0 12px 0;
+  }
+
+  .legal-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: #cbd5e1;
+  }
+
+  .legal-content ul {
+    margin: 12px 0 20px 24px;
+    color: #cbd5e1;
+  }
+
+  .legal-content li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .legal-card {
+      padding: 24px;
+    }
+  }
+</style>
