@@ -1,0 +1,382 @@
+---
+import { BRAND_CONFIG } from '../config/brand.config';
+---
+
+<section class="section audit-section" id="free-audit">
+  <div class="container">
+    <div class="glass-card audit-container-card">
+      <div class="audit-grid">
+        <!-- Left Column: Value Proposition & Deliverables -->
+        <div class="audit-info">
+          <div class="glass-pill">
+            <span class="dot"></span>
+            <span>Limited-Time Offer &bull; Normally $299</span>
+          </div>
+
+          <h2 class="audit-headline">
+            Get Your <span class="text-gradient">FREE Google Ads</span> Account Audit
+          </h2>
+
+          <p class="audit-desc">
+            Stop guessing why your cost per acquisition is rising. Our certified Google Partner specialists will manually inspect your search queries, bidding settings, negative lists, and tracking telemetry to identify immediate profit leaks.
+          </p>
+
+          <div class="audit-features-list">
+            <div class="audit-feature-item">
+              <span class="feature-icon">🔍</span>
+              <div>
+                <strong>Wasted Search Query Mining:</strong>
+                <span>Pinpoint irrelevant queries eating your budget without generating conversions.</span>
+              </div>
+            </div>
+
+            <div class="audit-feature-item">
+              <span class="feature-icon">⚡</span>
+              <div>
+                <strong>Performance Max Cannibalization:</strong>
+                <span>Detect if PMax is stealing branded searches to show inflated, unearned ROAS.</span>
+              </div>
+            </div>
+
+            <div class="audit-feature-item">
+              <span class="feature-icon">🛡️</span>
+              <div>
+                <strong>Tracking &amp; GTM Health Check:</strong>
+                <span>Validate Enhanced Conversions, primary action tagging, and Consent Mode v2.</span>
+              </div>
+            </div>
+
+            <div class="audit-feature-item">
+              <span class="feature-icon">📋</span>
+              <div>
+                <strong>Actionable Action Roadmap:</strong>
+                <span>Receive a detailed, prioritized action plan with zero obligation or sales pressure.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="audit-guarantee">
+            <span class="guarantee-shield">🔒</span>
+            <span>100% Confidential. We request read-only access via Manager Link. No passwords required.</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Audit Form Card -->
+        <div class="glass-card audit-form-card">
+          <h3 class="form-title">Request Your Audit</h3>
+          <p class="form-subtitle">Complete below to claim your manual diagnostic audit.</p>
+
+          <form id="auditForm" class="audit-form" method="POST" action="/api/audit">
+            <!-- Honeypot anti-spam field -->
+            <div style="display: none;" aria-hidden="true">
+              <label for="audit_botField">Do not fill this</label>
+              <input type="text" id="audit_botField" name="botField" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-group">
+              <label for="audit_name" class="form-label">Your Name <span class="text-cyan">*</span></label>
+              <input type="text" id="audit_name" name="name" class="form-input" placeholder="e.g. Sarah Jenkins" required />
+            </div>
+
+            <div class="form-group">
+              <label for="audit_email" class="form-label">Work Email <span class="text-cyan">*</span></label>
+              <input type="email" id="audit_email" name="email" class="form-input" placeholder="sarah@yourbrand.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="audit_website" class="form-label">Website URL <span class="text-cyan">*</span></label>
+              <input type="url" id="audit_website" name="website" class="form-input" placeholder="https://yourbrand.com" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="flex: 1;">
+                <label for="audit_runningAds" class="form-label">Currently Running Ads?</label>
+                <select id="audit_runningAds" name="runningAds" class="form-select">
+                  <option value="Yes">Yes, actively running</option>
+                  <option value="Paused">Paused currently</option>
+                  <option value="Planning">Planning to launch</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="flex: 1;">
+                <label for="audit_spend" class="form-label">Monthly Ad Spend</label>
+                <select id="audit_spend" name="spendBand" class="form-select">
+                  <option value="Under $3k">Under $3,000 / mo</option>
+                  <option value="$3k - $10k">$3,000 - $10,000 / mo</option>
+                  <option value="$10k - $30k">$10,000 - $30,000 / mo</option>
+                  <option value="$30k - $100k+">$30,000 - $100,000+ / mo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="audit_primaryIssue" class="form-label">Primary Challenge or Goal</label>
+              <input type="text" id="audit_primaryIssue" name="primaryIssue" class="form-input" placeholder="e.g. High CPC, low lead quality, GMC suspension" />
+            </div>
+
+            <button type="submit" id="auditSubmitBtn" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+              <span>Claim Free Google Ads Audit</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            <div id="auditFormStatus" class="form-status-message" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audit-section {
+    position: relative;
+  }
+
+  .audit-container-card {
+    background: rgba(6, 18, 32, 0.75);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    padding: 48px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 242, 254, 0.12);
+  }
+
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .audit-headline {
+    margin: 16px 0 14px 0;
+  }
+
+  .audit-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .audit-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .audit-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.9375rem;
+  }
+
+  .feature-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .audit-feature-item strong {
+    color: #ffffff;
+    display: inline;
+    margin-right: 6px;
+  }
+
+  .audit-feature-item span {
+    color: var(--text-muted);
+  }
+
+  .audit-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    background: rgba(0, 242, 254, 0.06);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    font-size: 0.84rem;
+    color: var(--cyan-bright);
+  }
+
+  .guarantee-shield {
+    font-size: 1.1rem;
+  }
+
+  /* Form Card */
+  .audit-form-card {
+    background: rgba(10, 26, 44, 0.85);
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    padding: 36px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  }
+
+  .form-title {
+    font-size: 1.45rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+
+  .form-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .form-status-message {
+    margin-top: 14px;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    display: none;
+  }
+
+  .form-status-message.success {
+    display: block;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid #10b981;
+    color: #6ee7b7;
+  }
+
+  .form-status-message.error {
+    display: block;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+  }
+
+  @media (max-width: 1024px) {
+    .audit-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .audit-container-card {
+      padding: 32px 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+    .audit-form-card {
+      padding: 24px;
+    }
+  }
+</style>
+
+<script>
+  function setupAuditForm() {
+    const form = document.getElementById('auditForm') as HTMLFormElement | null;
+    const btn = document.getElementById('auditSubmitBtn') as HTMLButtonElement | null;
+    const statusBox = document.getElementById('auditFormStatus');
+
+    if (!form || !btn || !statusBox) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Honeypot check
+      if (data.botField) {
+        return;
+      }
+
+      btn.disabled = true;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>Submitting Request...</span>';
+      statusBox.className = 'form-status-message';
+      statusBox.style.display = 'none';
+
+      try {
+        let isSuccess = false;
+        let errorMessage = '';
+
+        try {
+          const response = await fetch('/api/audit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json().catch(() => null);
+
+          if (response.ok && result?.success) {
+            isSuccess = true;
+          } else {
+            errorMessage = result?.error || 'Server error';
+          }
+        } catch (fetchErr) {
+          console.warn('[BidWise] Primary audit endpoint unavailable, engaging direct backup...', fetchErr);
+        }
+
+        // Resilient fallback: If server route did not return success, submit directly to FormSubmit
+        if (!isSuccess) {
+          try {
+            const fallbackRes = await fetch('https://formsubmit.co/ajax/mohammadbilal671@gmail.com', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+              body: JSON.stringify({
+                _subject: `[BidWise Marketing] FREE Google Ads Audit Request: ${data.name} (${data.website})`,
+                _replyto: data.email,
+                _autoresponse: 'Thank you for requesting a Free Google Ads Account Audit with BidWise Marketing! Our certified Google Partner team has received your request and will follow up with account review instructions within 24 business hours.',
+                _template: 'table',
+                _captcha: 'false',
+                'Applicant Name': data.name,
+                'Work Email': data.email,
+                'Website URL': data.website,
+                'Currently Running Ads': data.runningAds || 'Not specified',
+                'Monthly Ad Spend': data.spendBand || 'Not specified',
+                'Primary Goal / Bottleneck': data.primaryIssue || 'General Audit',
+                'Submitted At': new Date().toISOString(),
+                'Source': 'BidWise Marketing Free Audit Section',
+              }),
+            });
+            const fbResult = await fallbackRes.json().catch(() => null);
+            if (fallbackRes.ok && (fbResult?.success === 'true' || fbResult?.success === true)) {
+              isSuccess = true;
+            }
+          } catch (fbErr) {
+            console.error('[BidWise] Backup audit submission failed:', fbErr);
+          }
+        }
+
+        if (isSuccess) {
+          statusBox.textContent = '✓ Thank you! Your audit request was received. Our senior Google Partner team will inspect your account and follow up within 24 business hours.';
+          statusBox.className = 'form-status-message success';
+          statusBox.style.display = 'block';
+          form.reset();
+          setTimeout(() => {
+            window.location.href = '/confirmation/?type=audit';
+          }, 1500);
+        } else {
+          throw new Error(errorMessage || 'There was an issue submitting your request. Please email info@bidwise.marketing directly.');
+        }
+      } catch (err: any) {
+        statusBox.textContent = err.message || 'There was an issue submitting your request. Please email info@bidwise.marketing directly.';
+        statusBox.className = 'form-status-message error';
+        statusBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    });
+  }
+
+  setupAuditForm();
+  document.addEventListener('astro:page-load', setupAuditForm);
+</script>

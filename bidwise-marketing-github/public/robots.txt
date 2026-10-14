@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /confirmation/
+Disallow: /api/
+
+Sitemap: https://bidwise.marketing/sitemap-index.xml

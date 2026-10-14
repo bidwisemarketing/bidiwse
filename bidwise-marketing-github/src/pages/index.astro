@@ -1,0 +1,637 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import WorkProcess from '../components/WorkProcess.astro';
+import SkillHexagons from '../components/SkillHexagons.astro';
+import AuditSection from '../components/AuditSection.astro';
+import GlassPrism from '../components/GlassPrism.astro';
+import { BRAND_CONFIG } from '../config/brand.config';
+import { INSIGHTS_DATA } from '../data/insights.data';
+
+const homeFaqs = [
+  {
+    q: 'What is included in the FREE Google Ads Audit?',
+    a: 'Our audit is a comprehensive manual diagnostic performed directly by our senior certified Google Partner specialists. We inspect your historical search terms for budget waste, evaluate negative keyword lists, verify Conversion Tracking and Consent Mode v2 health, analyze Quality Scores, and inspect Google Merchant Center product feed compliance. You receive a concrete, prioritized roadmap with zero sales obligation.'
+  },
+  {
+    q: 'Who actually manages our ad campaigns at BidWise Marketing?',
+    a: 'You collaborate directly with senior certified Google Partner specialists with 9+ years of dedicated PPC experience who have scaled over 700 client accounts. We do not pass your accounts off to junior interns or account coordinators.'
+  },
+  {
+    q: 'Can you fix suspended Google Merchant Center accounts?',
+    a: 'Yes. We analyze the exact policy violation codes (misrepresentation, untrustworthy promotions, checkout requirements), correct website compliance barriers, overhaul your product feed attributes, and submit verified appeals directly to Google Support.'
+  },
+  {
+    q: 'How does BidWise prepare websites for AEO and AI search engines?',
+    a: 'We implement clear entity architecture, deep JSON-LD schema graphs, self-contained factual answer snippets, and standardized llms.txt protocols so modern answer engines (ChatGPT, Perplexity, Google AI Overviews) recognize your brand as the primary authority to quote.'
+  },
+  {
+    q: 'What platforms do you support beyond Google Ads?',
+    a: 'We manage full-funnel media across Meta (Facebook & Instagram), TikTok Ads, LinkedIn Ads, Microsoft Ads, and YouTube, supported by server-side tracking (sGTM & CAPI), custom conversion-focused web development, and n8n AI business automations.'
+  }
+];
+
+const pillars = BRAND_CONFIG.navigation.servicePillars;
+---
+
+<Layout 
+  title="BidWise Marketing | Full-Service Digital Growth, Google Ads & AI Agency"
+  description="Drive qualified pipeline, eliminate wasted ad spend, and scale ROAS. Certified Google Partner agency delivering Paid Media, SEO, Web Design, and AI Automations."
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Capability & Trust Strip -->
+  <section class="section-proof-strip">
+    <div class="container">
+      <div class="glass-card proof-card">
+        <div class="proof-grid">
+          <div class="proof-cell">
+            <span class="proof-icon">🎖️</span>
+            <div>
+              <span class="proof-title">Certified Google Partner</span>
+              <span class="proof-subtitle">Vetted Search &amp; Shopping Authority</span>
+            </div>
+          </div>
+
+          <div class="proof-cell">
+            <span class="proof-icon">🎯</span>
+            <div>
+              <span class="proof-title">Smart Bidding &amp; Signals</span>
+              <span class="proof-subtitle">Maximizing Target CPA &amp; ROAS</span>
+            </div>
+          </div>
+
+          <div class="proof-cell">
+            <span class="proof-icon">📈</span>
+            <div>
+              <span class="proof-title">700+ Accounts Scaled</span>
+              <span class="proof-subtitle">United States &amp; High-Growth Brands</span>
+            </div>
+          </div>
+
+          <div class="proof-cell">
+            <span class="proof-icon">⚡</span>
+            <div>
+              <span class="proof-title">Zero Agency Overhead</span>
+              <span class="proof-subtitle">Direct Access to Senior Specialists</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Core Service Pillars -->
+  <section class="section service-pillars-section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="glass-pill">
+          <span class="dot"></span>
+          <span>End-to-End Capabilities</span>
+        </div>
+        <h2 style="margin-top: 14px;">Cohesive Digital Growth Architecture</h2>
+        <p class="subtitle">
+          We organize our services into four connected pillars, ensuring every dollar invested in traffic is captured by high-converting design and measured by pristine server-side telemetry.
+        </p>
+      </div>
+
+      <div class="grid-2 pillar-grid">
+        {pillars.map((pillar, idx) => (
+          <div class="glass-card pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-num">0{idx + 1}</span>
+              <h3 class="pillar-title">{pillar.title}</h3>
+            </div>
+            <p class="pillar-desc">{pillar.description}</p>
+            <ul class="pillar-links-list">
+              {pillar.links.map((link) => (
+                <li>
+                  <a href={link.href} class="pillar-link-item">
+                    <span>{link.label}</span>
+                    <span class="pillar-arrow">&rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- "What Does Your Business Need?" Solutions Matcher -->
+  <section class="section solutions-matcher-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="glass-pill">
+          <span class="dot"></span>
+          <span>Goal-Oriented Solutions</span>
+        </div>
+        <h2 style="margin-top: 14px;">What Is Your Primary Growth Priority?</h2>
+        <p class="subtitle">
+          Select your current commercial objective to explore the exact strategic roadmap we deploy.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Goal 1 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">🎯</div>
+          <h3 class="goal-title">Lower Customer Acquisition Cost</h3>
+          <p class="goal-desc">
+            Eliminate wasted spend on low-intent search queries, prune non-converting audiences, and recalibrate algorithmic bid thresholds.
+          </p>
+          <a href="/services/google-ads/" class="goal-link">
+            Explore Google Ads &rarr;
+          </a>
+        </div>
+
+        <!-- Goal 2 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">🚀</div>
+          <h3 class="goal-title">Scale B2B Pipeline &amp; Enterprise Deals</h3>
+          <p class="goal-desc">
+            Reach verified buying committees and senior decision-makers on LinkedIn alongside high-intent commercial search capture.
+          </p>
+          <a href="/services/linkedin-ads/" class="goal-link">
+            Explore B2B Advertising &rarr;
+          </a>
+        </div>
+
+        <!-- Goal 3 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">⚡</div>
+          <h3 class="goal-title">Sub-Second, High-Converting Website</h3>
+          <p class="goal-desc">
+            Replace sluggish, dated websites with futuristic, accessible, ultra-fast web engineering built to maximize conversion rates.
+          </p>
+          <a href="/services/web-design/" class="goal-link">
+            Explore Web Engineering &rarr;
+          </a>
+        </div>
+
+        <!-- Goal 4 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">🤖</div>
+          <h3 class="goal-title">Automate Inefficient Workflows</h3>
+          <p class="goal-desc">
+            Connect your CRM, lead routing, and reporting with n8n and Make to save hundreds of hours of manual administrative labor.
+          </p>
+          <a href="/services/ai-automation/" class="goal-link">
+            Explore AI Automations &rarr;
+          </a>
+        </div>
+
+        <!-- Goal 5 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">🌐</div>
+          <h3 class="goal-title">Win Visibility in ChatGPT &amp; Perplexity</h3>
+          <p class="goal-desc">
+            Optimize your brand entity, schema graphs, and content structure for AI Overviews and Generative Answer Engines.
+          </p>
+          <a href="/services/aeo-geo/" class="goal-link">
+            Explore AEO &amp; GEO &rarr;
+          </a>
+        </div>
+
+        <!-- Goal 6 -->
+        <div class="glass-card goal-card">
+          <div class="goal-icon-box">📊</div>
+          <h3 class="goal-title">Restore Tracking &amp; Attribution Clarity</h3>
+          <p class="goal-desc">
+            Deploy server-side Google Tag Manager and Consent Mode v2 to bypass ad blockers and Safari ITP tracking loss.
+          </p>
+          <a href="/services/analytics-tracking/" class="goal-link">
+            Explore Server Tracking &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stepper Work Process (Matching Reference Image) -->
+  <WorkProcess />
+
+  <!-- Technical Mastery & Platform Grid (Matching Reference Image) -->
+  <section class="section skills-section">
+    <div class="container">
+      <SkillHexagons />
+    </div>
+  </section>
+
+  <!-- Prominent FREE Google Ads Audit Section with Form -->
+  <AuditSection />
+
+  <!-- Frequently Asked Questions (Frosted Glass Accordions) -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="glass-pill">
+          <span class="dot"></span>
+          <span>Common Questions</span>
+        </div>
+        <h2 style="margin-top: 14px;">Clear Answers to Key Questions</h2>
+        <p class="subtitle">
+          Everything you need to know about our collaboration model, accountability, and verified capabilities.
+        </p>
+      </div>
+
+      <div class="faq-accordion-list">
+        {homeFaqs.map((faq, index) => (
+          <details class="glass-card faq-card" open={index === 0}>
+            <summary class="faq-summary">
+              <span class="faq-question">{faq.q}</span>
+              <span class="faq-toggle-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Insights / Research -->
+  <section class="section insights-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="glass-pill">
+          <span class="dot"></span>
+          <span>Strategic Research</span>
+        </div>
+        <h2 style="margin-top: 14px;">Latest Perspectives &amp; Checklists</h2>
+        <p class="subtitle">
+          Actionable frameworks and engineering insights from our senior performance specialists.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {INSIGHTS_DATA.slice(0, 3).map((article) => (
+          <article class="glass-card insight-card">
+            <div class="insight-badge-row">
+              <span class="insight-cat-tag">{article.category}</span>
+              <span class="insight-read-time">{article.readTime}</span>
+            </div>
+            <h3 class="insight-title">
+              <a href={`/insights/${article.slug}/`}>{article.title}</a>
+            </h3>
+            <p class="insight-excerpt">{article.excerpt}</p>
+            <div class="insight-footer">
+              <span class="insight-date">{article.date}</span>
+              <a href={`/insights/${article.slug}/`} class="insight-read-link">
+                Read Article &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Glass CTA Banner (Matching Reference Image) -->
+  <section class="section cta-banner-section">
+    <div class="container">
+      <div class="glass-card cta-banner-card">
+        <div class="cta-banner-content">
+          <div class="glass-pill">
+            <span class="dot"></span>
+            <span>Ready to Eliminate Wasted Spend?</span>
+          </div>
+          <h2 class="cta-banner-title">
+            Partner with <span class="text-gradient">BidWise Marketing</span>
+          </h2>
+          <p class="cta-banner-desc">
+            Whether you want a comprehensive audit of your Google Ads account or a full-scale multi-channel growth architecture, we are ready to build with you.
+          </p>
+          <div class="cta-btn-group">
+            <a href="/free-google-ads-audit/" class="btn btn-primary">
+              Claim Free Google Ads Audit
+            </a>
+            <a href="/contact/" class="btn btn-glass">
+              Discuss Your Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Proof Strip */
+  .section-proof-strip {
+    padding: 0 0 40px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .proof-card {
+    padding: 24px 32px;
+    background: rgba(8, 22, 38, 0.65);
+    border: 1px solid rgba(0, 242, 254, 0.22);
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+
+  .proof-cell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .proof-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .proof-title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .proof-subtitle {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 1024px) {
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Pillar Grid */
+  .pillar-card {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .pillar-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--cyan-primary);
+    font-family: var(--font-mono);
+  }
+
+  .pillar-title {
+    font-size: 1.45rem;
+    color: #ffffff;
+  }
+
+  .pillar-desc {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .pillar-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .pillar-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(6, 18, 30, 0.5);
+    border: 1px solid rgba(0, 242, 254, 0.12);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+  }
+
+  .pillar-link-item:hover {
+    background: rgba(0, 242, 254, 0.12);
+    border-color: var(--cyan-primary);
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  .pillar-arrow {
+    color: var(--cyan-primary);
+    transition: transform 0.2s ease;
+  }
+
+  .pillar-link-item:hover .pillar-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Goal Cards */
+  .goal-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+  }
+
+  .goal-icon-box {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .goal-title {
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .goal-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .goal-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--cyan-bright);
+    transition: color 0.2s ease;
+  }
+
+  .goal-link:hover {
+    color: #ffffff;
+  }
+
+  /* FAQs */
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-card {
+    padding: 20px 28px;
+    cursor: pointer;
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-toggle-icon {
+    font-size: 1.5rem;
+    color: var(--cyan-primary);
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .faq-toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-content {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .faq-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Insights Cards */
+  .insight-card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .insight-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .insight-cat-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cyan-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .insight-read-time {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .insight-title {
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .insight-title a:hover {
+    color: var(--cyan-bright);
+  }
+
+  .insight-excerpt {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .insight-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .insight-date {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .insight-read-link {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--cyan-bright);
+  }
+
+  /* CTA Banner Card */
+  .cta-banner-card {
+    background: radial-gradient(circle at 50% 50%, rgba(14, 40, 66, 0.85) 0%, rgba(6, 18, 30, 0.95) 100%);
+    border: 1px solid rgba(0, 242, 254, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(0, 242, 254, 0.15);
+    padding: 60px 40px;
+    text-align: center;
+    border-radius: 28px;
+  }
+
+  .cta-banner-content {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .cta-banner-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .cta-banner-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .cta-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>

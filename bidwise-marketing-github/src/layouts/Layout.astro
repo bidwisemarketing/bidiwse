@@ -1,0 +1,98 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SeoMeta from '../components/SeoMeta.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article' | 'service';
+  schemaData?: any;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  noindex = false,
+  type = 'website',
+  schemaData = null,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#03080e" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preload Self-Hosted Variable Font for Zero Layout Shift (CLS: 0.000) -->
+    <link 
+      rel="preload" 
+      href="/fonts/plus-jakarta-sans.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin
+    />
+
+    <!-- Preload LCP Hero Candidates on Homepage for Instant First Render -->
+    {currentPath === '/' && (
+      <>
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/hero-portrait-mobile.webp" 
+          type="image/webp" 
+          media="(max-width: 640px)" 
+          fetchpriority="high" 
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/hero-portrait.webp" 
+          type="image/webp" 
+          media="(min-width: 641px)" 
+          fetchpriority="high" 
+        />
+      </>
+    )}
+
+    <SeoMeta 
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      ogImage={ogImage}
+      noindex={noindex}
+      type={type}
+      schemaData={schemaData}
+    />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Floating Glass Header -->
+    <Header currentPath={currentPath} />
+
+    <!-- Main Content Slot -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Frosted Glass Footer -->
+    <Footer />
+
+    <!-- Cookie Consent Mode v2 Banner -->
+    <CookieBanner />
+  </body>
+</html>

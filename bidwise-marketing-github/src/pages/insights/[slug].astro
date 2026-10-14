@@ -1,0 +1,321 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GlassPrism from '../../components/GlassPrism.astro';
+import { INSIGHTS_DATA, type InsightArticle } from '../../data/insights.data';
+import { BRAND_CONFIG } from '../../config/brand.config';
+
+export function getStaticPaths() {
+  return INSIGHTS_DATA.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: InsightArticle;
+}
+
+const { article } = Astro.props;
+
+const articleSchema = {
+  "@type": "Article",
+  "@id": `${BRAND_CONFIG.domain}/insights/${article.slug}/#article`,
+  "headline": article.title,
+  "description": article.excerpt,
+  "datePublished": "2026-01-15T09:00:00+00:00",
+  "dateModified": "2026-02-24T10:00:00+00:00",
+  "author": {
+    "@type": "Person",
+    "name": article.author.name,
+    "jobTitle": article.author.role,
+    "image": `${BRAND_CONFIG.domain}${article.author.image}`,
+  },
+  "publisher": {
+    "@id": `${BRAND_CONFIG.domain}/#organization`
+  },
+  "mainEntityOfPage": `${BRAND_CONFIG.domain}/insights/${article.slug}/`,
+  "image": `${BRAND_CONFIG.domain}/logo.png`
+};
+---
+
+<Layout
+  title={`${article.title} | BidWise Marketing Insights`}
+  description={article.excerpt}
+  type="article"
+  schemaData={articleSchema}
+>
+  <article class="article-page-section section">
+    <GlassPrism size={80} variant="cube" className="prism-float hero-prism-1" />
+
+    <div class="container">
+      <div class="article-header-wrapper">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li aria-hidden="true">&rsaquo;</li>
+            <li><a href="/insights/">Insights</a></li>
+            <li aria-hidden="true">&rsaquo;</li>
+            <li aria-current="page">{article.category}</li>
+          </ol>
+        </nav>
+
+        <div class="article-meta-tags" style="margin-top: 14px;">
+          <span class="category-badge">{article.category}</span>
+          <span class="read-time-badge">{article.readTime}</span>
+        </div>
+
+        <h1 class="article-h1">{article.title}</h1>
+        <p class="article-subheadline">{article.subtitle}</p>
+
+        <div class="author-box-strip">
+          <img 
+            src={article.author.image} 
+            alt={article.author.name} 
+            width="48" 
+            height="48" 
+            class="author-avatar"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="author-info">
+            <span class="author-name-text">{article.author.name}</span>
+            <span class="author-role-text">{article.author.role} &bull; {article.date}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Article Prose in Glass Container -->
+      <div class="glass-card article-content-card">
+        <div class="article-prose" set:html={article.contentHtml} />
+
+        <div class="article-tags-row">
+          <span class="tags-label">Topics:</span>
+          {article.tags.map((tag) => (
+            <span class="article-tag-item">#{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- In-Article Consultation CTA Card -->
+      <div class="glass-card article-cta-box">
+        <div class="article-cta-content">
+          <span class="cta-mini-pill">Complimentary Review</span>
+          <h2 style="font-size: 1.5rem; margin: 10px 0;">Want Our Certified Specialists to Audit Your Google Ads Account?</h2>
+          <p style="margin-bottom: 20px;">
+            Put these insights to work on your actual search terms, bidding strategies, and conversion tracking. Claim your free manual account audit today.
+          </p>
+          <a href="/free-google-ads-audit/" class="btn btn-primary">
+            Claim Free Google Ads Audit &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .article-page-section {
+    position: relative;
+    padding-top: calc(var(--nav-height) + 50px);
+    overflow: hidden;
+  }
+
+  .hero-prism-1 {
+    top: 14%;
+    right: 5%;
+  }
+
+  .article-header-wrapper {
+    max-width: 820px;
+    margin: 0 auto 36px auto;
+    text-align: center;
+  }
+
+  .breadcrumbs ol {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    font-size: 0.84rem;
+    color: var(--text-dim);
+  }
+
+  .breadcrumbs a {
+    color: var(--text-muted);
+  }
+
+  .article-meta-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .category-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--cyan-primary);
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+  }
+
+  .read-time-badge {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .article-h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin: 18px 0 14px 0;
+    line-height: 1.2;
+  }
+
+  .article-subheadline {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .author-box-strip {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 20px;
+    background: rgba(10, 26, 44, 0.6);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: var(--radius-full);
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid var(--cyan-primary);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .author-name-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .author-role-text {
+    font-size: 0.76rem;
+    color: var(--text-dim);
+  }
+
+  /* Content Card */
+  .article-content-card {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px;
+    background: rgba(8, 22, 38, 0.75);
+  }
+
+  .article-prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+  }
+
+  .article-prose h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin: 40px 0 16px 0;
+  }
+
+  .article-prose h3 {
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin: 28px 0 12px 0;
+  }
+
+  .article-prose p {
+    margin-bottom: 20px;
+    color: #cbd5e1;
+  }
+
+  .article-prose ul, .article-prose ol {
+    margin: 16px 0 24px 24px;
+    color: #cbd5e1;
+  }
+
+  .article-prose li {
+    margin-bottom: 8px;
+  }
+
+  .article-prose blockquote {
+    padding: 18px 24px;
+    border-left: 3px solid var(--cyan-primary);
+    background: rgba(0, 242, 254, 0.06);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: 24px 0;
+    font-style: italic;
+    color: #e2f8ff;
+  }
+
+  .article-prose code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 2px 6px;
+    background: rgba(0, 242, 254, 0.12);
+    border-radius: 4px;
+    color: var(--cyan-primary);
+  }
+
+  .article-tags-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+  }
+
+  .tags-label {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+  }
+
+  .article-tag-item {
+    font-size: 0.8rem;
+    color: var(--cyan-bright);
+    background: rgba(0, 242, 254, 0.08);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .article-cta-box {
+    max-width: 860px;
+    margin: 48px auto 0 auto;
+    padding: 40px;
+    text-align: center;
+    background: radial-gradient(circle at 50% 50%, rgba(14, 38, 62, 0.85) 0%, rgba(6, 18, 30, 0.95) 100%);
+  }
+
+  .cta-mini-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--cyan-primary);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 768px) {
+    .article-content-card {
+      padding: 28px;
+    }
+  }
+</style>
